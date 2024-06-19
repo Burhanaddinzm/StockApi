@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TestApi.Data;
 using TestApi.Models;
+using TestApi.Repositories.Implementations;
+using TestApi.Repositories.Interfaces;
+using TestApi.Services.Implementations;
+using TestApi.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -30,6 +34,10 @@ var builder = WebApplication.CreateBuilder(args);
         options.Lockout.MaxFailedAccessAttempts = 5;
         options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     }).AddEntityFrameworkStores<AppDbContext>();
+
+    builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+    builder.Services.AddScoped<IStockRepository, StockRepository>();
+    builder.Services.AddScoped<IStockService, StockManager>();
 }
 
 var app = builder.Build();
