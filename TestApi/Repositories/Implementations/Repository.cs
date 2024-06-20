@@ -52,6 +52,10 @@ public class Repository<T> : IRepository<T> where T : BaseAuditableEntity
                 _context.Set<T>().Update(entity);
                 await _context.SaveChangesAsync();
             }
+            else
+            {
+                throw new Exception($"Entity with id {id} does not exist!");
+            }
         }
         catch (DbUpdateException ex)
         {

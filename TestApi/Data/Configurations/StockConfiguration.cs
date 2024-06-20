@@ -10,11 +10,11 @@ public class StockConfiguration : BaseConfiguration<Stock>
     public override void Configure(EntityTypeBuilder<Stock> builder)
     {
         builder.Property(x => x.Symbol)
-               .HasColumnType("varchar")
+               .HasColumnType("varchar(max)")
                .IsRequired();
 
         builder.Property(x => x.CompanyName)
-               .HasColumnType("varchar")
+               .HasColumnType("varchar(max)")
                .IsRequired();
 
         builder.Property(x => x.Purchase)
@@ -28,7 +28,7 @@ public class StockConfiguration : BaseConfiguration<Stock>
                .IsRequired();
 
         builder.Property(x => x.Industry)
-               .HasColumnType("varchar")
+               .HasColumnType("varchar(max)")
                .IsRequired();
 
         builder.Property(x => x.MarketCap)

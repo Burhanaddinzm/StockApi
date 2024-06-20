@@ -15,7 +15,7 @@ public class CommentConfiguration : BaseConfiguration<Comment>
                .IsRequired();
 
         builder.Property(x => x.Content)
-               .HasColumnType("varchar")
+               .HasColumnType("varchar(max)")
                .IsRequired();
 
         builder.HasOne(x => x.AppUser)

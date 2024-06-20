@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using TestApi.Dtos.Stock;
+using TestApi.Mappers;
 using TestApi.Models;
 using TestApi.Repositories.Interfaces;
 using TestApi.Services.Interfaces;
@@ -24,8 +25,33 @@ public class StockManager : IStockService
         return await _stockRepository.GetByIdAsync(id);
     }
 
-    public async Task<Stock?> GetStockAsync(Expression<Func<Stock, bool>> expression)
+    public async Task<Stock> CreateStockAsync(CreateStockDto stockDto)
     {
-        return await _stockRepository.GetAsync(expression, "Comments", "Portfolios");
+        var stock = stockDto.ToStockFromCreateDto();
+        await _stockRepository.CreateAsync(stock);
+        return stock;
+    }
+
+    public async Task<Stock?> UpdateStockAsync(int id, UpdateStockDto stockDto)
+    {
+        var stock = await _stockRepository.GetByIdAsync(id);
+
+        if (stock != null)
+        {
+            stock.Symbol = stockDto.Symbol;
+            stock.CompanyName = stockDto.CompanyName;
+            stock.Purchase = stockDto.Purchase;
+            stock.LastDiv = stockDto.LastDiv;
+            stock.Industry = stockDto.Industry;
+            stock.MarketCap = stockDto.MarketCap;
+
+            await _stockRepository.UpdateAsync(stock);
+        }
+        return stock;
+    }
+
+    public async Task DeleteStockAsync(int id)
+    {
+        await _stockRepository.DeleteAsync(id);
     }
 }
