@@ -11,4 +11,5 @@ public interface IRepository<T> where T : BaseAuditableEntity
     Task<T?> GetByIdAsync(int id, params string[] includes);
     Task<T?> GetAsync(Expression<Func<T, bool>>? expression, params string[] includes);
     Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? expression = null, params string[] includes);
+    Task<bool> IsExistsAsync(int id);
 }

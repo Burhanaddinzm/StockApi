@@ -10,4 +10,5 @@ public interface IStockService
     Task<Stock> CreateStockAsync(CreateStockDto stockDto);
     Task<Stock?> UpdateStockAsync(int id, UpdateStockDto stockDto);
     Task DeleteStockAsync(int id);
+    Task<bool> StockExistsAsync(int id);
 }

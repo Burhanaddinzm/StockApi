@@ -25,10 +25,35 @@ public class CommentManager : ICommentService
         return await _commentRepository.GetByIdAsync(id, "Stock", "AppUser");
     }
 
-    public async Task<Comment> CreateCommentAsync(CreateCommentDto commentDto)
+    public async Task<Comment> CreateCommentAsync(int stockId, CreateCommentDto commentDto)
     {
-        var comment = commentDto.ToCommentFromCreateDto();
+        var comment = commentDto.ToCommentFromCreateDto(stockId);
         await _commentRepository.CreateAsync(comment);
         return comment;
+    }
+
+    public async Task<Comment?> UpdateCommentAsync(int id, UpdateCommentDto commentDto)
+    {
+        var comment = await _commentRepository.GetByIdAsync(id);
+
+        if (comment != null)
+        {
+            comment.Title = commentDto.Title;
+            comment.Content = commentDto.Content;
+            comment.AppUserId = commentDto.AppUserId;
+
+            await _commentRepository.UpdateAsync(comment);
+        }
+        return comment;
+    }
+
+    public async Task DeleteCommentAsync(int id)
+    {
+        await _commentRepository.DeleteAsync(id);
+    }
+
+    public async Task<bool> CommentExistsAsync(int id)
+    {
+        return await _commentRepository.IsExistsAsync(id);
     }
 }

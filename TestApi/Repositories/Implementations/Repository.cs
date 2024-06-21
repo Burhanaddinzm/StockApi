@@ -105,4 +105,9 @@ public class Repository<T> : IRepository<T> where T : BaseAuditableEntity
 
         return await query.ToListAsync();
     }
+
+    public async Task<bool> IsExistsAsync(int id)
+    {
+        return await _context.Set<T>().AnyAsync(x => x.Id == id);
+    }
 }

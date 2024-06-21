@@ -54,4 +54,9 @@ public class StockManager : IStockService
     {
         await _stockRepository.DeleteAsync(id);
     }
+
+    public async Task<bool> StockExistsAsync(int id)
+    {
+        return await _stockRepository.IsExistsAsync(id);
+    }
 }
