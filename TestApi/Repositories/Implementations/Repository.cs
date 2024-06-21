@@ -63,9 +63,16 @@ public class Repository<T> : IRepository<T> where T : BaseAuditableEntity
         }
     }
 
-    public async Task<T?> GetByIdAsync(int id)
+    public async Task<T?> GetByIdAsync(int id, params string[] includes)
     {
-        return await _context.Set<T>().FindAsync(id);
+        IQueryable<T> query = _context.Set<T>().AsQueryable();
+
+        foreach (var include in includes)
+        {
+            query = query.Include(include);
+        }
+
+        return await query.FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<T?> GetAsync(Expression<Func<T, bool>>? expression, params string[] includes)

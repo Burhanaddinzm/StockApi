@@ -1,4 +1,7 @@
-﻿namespace TestApi.Dtos.Stock;
+﻿using TestApi.Dtos.Comment;
+using TestApi.Models;
+
+namespace TestApi.Dtos.Stock;
 
 public class StockDto
 {
@@ -9,4 +12,6 @@ public class StockDto
     public decimal LastDiv { get; set; }
     public string Industry { get; set; } = null!;
     public long MarketCap { get; set; }
+    public List<CommentDto> Comments { get; set; } = null!;
+    public List<Portfolio> Portfolios { get; set; } = null!;
 }

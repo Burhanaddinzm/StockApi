@@ -22,7 +22,7 @@ public class StockManager : IStockService
 
     public async Task<Stock?> GetStockAsync(int id)
     {
-        return await _stockRepository.GetByIdAsync(id);
+        return await _stockRepository.GetByIdAsync(id, "Comments", "Portfolios");
     }
 
     public async Task<Stock> CreateStockAsync(CreateStockDto stockDto)

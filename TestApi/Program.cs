@@ -11,7 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 {
     // Add services to the container.
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-    builder.Services.AddControllers();
+    builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+    });
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
     builder.Services.AddHttpContextAccessor();
@@ -37,7 +40,10 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
     builder.Services.AddScoped<IStockRepository, StockRepository>();
+    builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+
     builder.Services.AddScoped<IStockService, StockManager>();
+    builder.Services.AddScoped<ICommentService, CommentManager>();
 }
 
 var app = builder.Build();
