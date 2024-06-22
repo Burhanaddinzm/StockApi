@@ -32,7 +32,7 @@ public class CommentController : ControllerBase
         return Ok(comments.Select(x => x.ToCommentDto()));
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<IActionResult> Get([FromRoute] int? id)
     {
         if (id == null || id <= 0)
@@ -47,9 +47,14 @@ public class CommentController : ControllerBase
         return Ok(comment.ToCommentDto());
     }
 
-    [HttpPost("{stockId}")]
+    [HttpPost("{stockId:int}")]
     public async Task<IActionResult> Create([FromRoute] int? stockId, [FromBody] CreateCommentDto commentDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return ValidationProblem(ModelState);
+        }
+
         if (stockId == null || stockId <= 0)
         {
             return BadRequest("Invalid stockId!");
@@ -64,9 +69,14 @@ public class CommentController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = comment.Id }, comment.ToCommentDto());
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id:int}")]
     public async Task<IActionResult> Update([FromRoute] int? id, [FromBody] UpdateCommentDto commentDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return ValidationProblem(ModelState);
+        }
+
         if (id == null || id <= 0)
         {
             return BadRequest("Invalid id!");
@@ -81,9 +91,14 @@ public class CommentController : ControllerBase
         return Ok(comment.ToCommentDto());
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete([FromRoute] int? id)
     {
+        if (!ModelState.IsValid)
+        {
+            return ValidationProblem(ModelState);
+        }
+
         if (id == null || id <= 0)
         {
             return BadRequest("Invalid id!");

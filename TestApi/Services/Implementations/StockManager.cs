@@ -1,4 +1,5 @@
 ﻿using TestApi.Dtos.Stock;
+using TestApi.Helpers.Query;
 using TestApi.Mappers;
 using TestApi.Models;
 using TestApi.Repositories.Interfaces;
@@ -15,9 +16,49 @@ public class StockManager : IStockService
         _stockRepository = stockRepository;
     }
 
-    public async Task<List<Stock>> GetAllStocksAsync()
+    public async Task<List<Stock>> GetAllStocksAsync(QueryObject? query)
     {
-        return await _stockRepository.GetAllAsync(null, "Comments", "Portfolios");
+        if (query != null)
+        {
+            if (query.CompanyName != null && query.Symbol != null)
+            {
+                return await _stockRepository.GetAllWithOrderAsync(
+                    query.SortBy,
+                    query.IsDescending,
+                    x => x.Symbol.ToLower().Contains(query.Symbol.ToLower().Trim()) &&
+                    x.CompanyName.ToLower().Contains(query.CompanyName.ToLower().Trim()),
+                    "Comments",
+                    "Portfolios");
+            }
+            else if (query.Symbol != null)
+            {
+                return await _stockRepository.GetAllWithOrderAsync(
+                    query.SortBy,
+                    query.IsDescending,
+                    x => x.Symbol.ToLower().Contains(query.Symbol.ToLower().Trim()),
+                    "Comments",
+                    "Portfolios");
+            }
+            else if (query.CompanyName != null)
+            {
+                return await _stockRepository.GetAllWithOrderAsync(
+                    query.SortBy,
+                    query.IsDescending,
+                    x => x.CompanyName.ToLower().Contains(query.CompanyName.ToLower().Trim()),
+                    "Comments",
+                    "Portfolios");
+            }
+            else
+            {
+                return await _stockRepository.GetAllWithOrderAsync(
+                    query.SortBy,
+                    query.IsDescending,
+                    null,
+                    "Comments",
+                    "Portfolios");
+            }
+        }
+        return await _stockRepository.GetAllWithOrderAsync(null, false, null, "Comments", "Portfolios");
     }
 
     public async Task<Stock?> GetStockAsync(int id)

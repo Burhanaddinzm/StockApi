@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TestApi.Dtos.Stock;
+using TestApi.Helpers.Query;
 using TestApi.Mappers;
 using TestApi.Models;
 using TestApi.Services.Interfaces;
@@ -17,9 +18,9 @@ public class StockController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> Get([FromQuery] QueryObject? query)
     {
-        var stocks = await _stockService.GetAllStocksAsync();
+        var stocks = await _stockService.GetAllStocksAsync(query);
 
         if (stocks.Count == 0)
         {
@@ -28,7 +29,7 @@ public class StockController : ControllerBase
         return Ok(stocks.Select(x => x.ToStockDto()));
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<IActionResult> Get([FromRoute] int? id)
     {
         if (id == null || id <= 0)
@@ -46,13 +47,23 @@ public class StockController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateStockDto stockDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return ValidationProblem(ModelState);
+        }
+
         var stock = await _stockService.CreateStockAsync(stockDto);
         return CreatedAtAction(nameof(Get), new { id = stock.Id }, stock.ToStockDto());
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id:int}")]
     public async Task<IActionResult> Update([FromRoute] int? id, [FromBody] UpdateStockDto stockDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return ValidationProblem(ModelState);
+        }
+
         if (id == null || id <= 0)
         {
             return BadRequest("Invalid id!");
@@ -67,9 +78,14 @@ public class StockController : ControllerBase
         return Ok(stock.ToStockDto());
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete([FromRoute] int? id)
     {
+        if (!ModelState.IsValid)
+        {
+            return ValidationProblem(ModelState);
+        }
+
         if (id == null || id <= 0)
         {
             return BadRequest("Invalid id!");

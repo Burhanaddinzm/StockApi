@@ -15,7 +15,7 @@ public class Repository<T> : IRepository<T> where T : BaseAuditableEntity
         _context = context;
     }
 
-    public async Task CreateAsync(T entity)
+    public virtual async Task CreateAsync(T entity)
     {
         try
         {
@@ -28,7 +28,7 @@ public class Repository<T> : IRepository<T> where T : BaseAuditableEntity
         }
     }
 
-    public async Task UpdateAsync(T entity)
+    public virtual async Task UpdateAsync(T entity)
     {
         try
         {
@@ -41,7 +41,7 @@ public class Repository<T> : IRepository<T> where T : BaseAuditableEntity
         }
     }
 
-    public async Task DeleteAsync(int id)
+    public virtual async Task DeleteAsync(int id)
     {
         try
         {
@@ -63,7 +63,7 @@ public class Repository<T> : IRepository<T> where T : BaseAuditableEntity
         }
     }
 
-    public async Task<T?> GetByIdAsync(int id, params string[] includes)
+    public virtual async Task<T?> GetByIdAsync(int id, params string[] includes)
     {
         IQueryable<T> query = _context.Set<T>().AsQueryable();
 
@@ -75,7 +75,7 @@ public class Repository<T> : IRepository<T> where T : BaseAuditableEntity
         return await query.FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<T?> GetAsync(Expression<Func<T, bool>>? expression, params string[] includes)
+    public virtual async Task<T?> GetAsync(Expression<Func<T, bool>>? expression, params string[] includes)
     {
         IQueryable<T> query = _context.Set<T>().AsQueryable();
 
@@ -89,7 +89,7 @@ public class Repository<T> : IRepository<T> where T : BaseAuditableEntity
             : await query.FirstOrDefaultAsync();
     }
 
-    public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? expression = null, params string[] includes)
+    public virtual async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? expression = null, params string[] includes)
     {
         IQueryable<T> query = _context.Set<T>().AsQueryable();
 

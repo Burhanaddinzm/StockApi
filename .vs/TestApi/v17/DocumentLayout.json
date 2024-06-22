@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Burhan\\source\\repos\\TestApi\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C76361FB-4E7A-44A1-B0CB-D1D42A375532}|TestApi\\TestApi.csproj|c:\\users\\burhan\\source\\repos\\testapi\\testapi\\controllers\\stockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C76361FB-4E7A-44A1-B0CB-D1D42A375532}|TestApi\\TestApi.csproj|solutionrelative:testapi\\controllers\\stockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C76361FB-4E7A-44A1-B0CB-D1D42A375532}|TestApi\\TestApi.csproj|c:\\users\\burhan\\source\\repos\\testapi\\testapi\\services\\implementations\\stockmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C76361FB-4E7A-44A1-B0CB-D1D42A375532}|TestApi\\TestApi.csproj|solutionrelative:testapi\\services\\implementations\\stockmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +27,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StockController.cs",
+              "DocumentMoniker": "C:\\Users\\Burhan\\source\\repos\\TestApi\\TestApi\\Controllers\\StockController.cs",
+              "RelativeDocumentMoniker": "TestApi\\Controllers\\StockController.cs",
+              "ToolTip": "C:\\Users\\Burhan\\source\\repos\\TestApi\\TestApi\\Controllers\\StockController.cs",
+              "RelativeToolTip": "TestApi\\Controllers\\StockController.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAD4vxwAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-22T15:25:45.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StockManager.cs",
+              "DocumentMoniker": "C:\\Users\\Burhan\\source\\repos\\TestApi\\TestApi\\Services\\Implementations\\StockManager.cs",
+              "RelativeDocumentMoniker": "TestApi\\Services\\Implementations\\StockManager.cs",
+              "ToolTip": "C:\\Users\\Burhan\\source\\repos\\TestApi\\TestApi\\Services\\Implementations\\StockManager.cs",
+              "RelativeToolTip": "TestApi\\Services\\Implementations\\StockManager.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAcwBIAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-22T10:49:09.181Z",
+              "EditorCaption": ""
             }
           ]
         }
