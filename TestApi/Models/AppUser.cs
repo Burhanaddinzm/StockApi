@@ -10,5 +10,5 @@ public class AppUser : IdentityUser
         Portfolios = new List<Portfolio>();
     }
 
-    public override bool LockoutEnabled { get => true; set => base.LockoutEnabled = value; }
+    //public override bool LockoutEnabled { get => true; set => base.LockoutEnabled = value; }
 }

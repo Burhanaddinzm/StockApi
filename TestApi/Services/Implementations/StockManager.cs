@@ -18,13 +18,18 @@ public class StockManager : IStockService
 
     public async Task<List<Stock>> GetAllStocksAsync(QueryObject? query)
     {
+        const int DefaultPage = 1;
+        const int DefaultPageSize = 1;
+
         if (query != null)
         {
             if (query.CompanyName != null && query.Symbol != null)
             {
-                return await _stockRepository.GetAllWithOrderAsync(
+                return await _stockRepository.GetAllWithQueryParamsAsync(
                     query.SortBy,
                     query.IsDescending,
+                    query.Page,
+                    query.PageSize,
                     x => x.Symbol.ToLower().Contains(query.Symbol.ToLower().Trim()) &&
                     x.CompanyName.ToLower().Contains(query.CompanyName.ToLower().Trim()),
                     "Comments",
@@ -32,33 +37,46 @@ public class StockManager : IStockService
             }
             else if (query.Symbol != null)
             {
-                return await _stockRepository.GetAllWithOrderAsync(
+                return await _stockRepository.GetAllWithQueryParamsAsync(
                     query.SortBy,
                     query.IsDescending,
+                    query.Page,
+                    query.PageSize,
                     x => x.Symbol.ToLower().Contains(query.Symbol.ToLower().Trim()),
                     "Comments",
                     "Portfolios");
             }
             else if (query.CompanyName != null)
             {
-                return await _stockRepository.GetAllWithOrderAsync(
+                return await _stockRepository.GetAllWithQueryParamsAsync(
                     query.SortBy,
                     query.IsDescending,
+                    query.Page,
+                    query.PageSize,
                     x => x.CompanyName.ToLower().Contains(query.CompanyName.ToLower().Trim()),
                     "Comments",
                     "Portfolios");
             }
             else
             {
-                return await _stockRepository.GetAllWithOrderAsync(
+                return await _stockRepository.GetAllWithQueryParamsAsync(
                     query.SortBy,
                     query.IsDescending,
+                    query.Page,
+                    query.PageSize,
                     null,
                     "Comments",
                     "Portfolios");
             }
         }
-        return await _stockRepository.GetAllWithOrderAsync(null, false, null, "Comments", "Portfolios");
+        return await _stockRepository.GetAllWithQueryParamsAsync(
+            null,
+            false,
+            DefaultPage,
+            DefaultPageSize,
+            null,
+            "Comments",
+            "Portfolios");
     }
 
     public async Task<Stock?> GetStockAsync(int id)

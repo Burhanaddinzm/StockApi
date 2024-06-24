@@ -146,3 +146,4 @@ C:\Users\Burhan\source\repos\TestApi\TestApi\bin\Debug\net8.0\Microsoft.AspNetCo
 C:\Users\Burhan\source\repos\TestApi\TestApi\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Burhan\source\repos\TestApi\TestApi\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Burhan\source\repos\TestApi\TestApi\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\Burhan\source\repos\TestApi\TestApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

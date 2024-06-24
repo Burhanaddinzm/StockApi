@@ -13,9 +13,11 @@ public class StockRepository : Repository<Stock>, IStockRepository
     {
     }
 
-    public async Task<List<Stock>> GetAllWithOrderAsync(
+    public async Task<List<Stock>> GetAllWithQueryParamsAsync(
         string? sortBy,
         bool isDescending,
+        int page,
+        int pageSize,
         Expression<Func<Stock, bool>>? expression = null,
         params string[] includes)
     {
@@ -53,6 +55,8 @@ public class StockRepository : Repository<Stock>, IStockRepository
             }
         }
 
-        return await query.ToListAsync();
+        int skipNumber = (page - 1) * pageSize;
+
+        return await query.Skip(skipNumber).Take(pageSize).ToListAsync();
     }
 }
