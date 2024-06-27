@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Burhan\\source\\repos\\TestApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C76361FB-4E7A-44A1-B0CB-D1D42A375532}|TestApi\\TestApi.csproj|c:\\users\\burhan\\source\\repos\\testapi\\testapi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C76361FB-4E7A-44A1-B0CB-D1D42A375532}|TestApi\\TestApi.csproj|solutionrelative:testapi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C76361FB-4E7A-44A1-B0CB-D1D42A375532}|TestApi\\TestApi.csproj|c:\\users\\burhan\\source\\repos\\testapi\\testapi\\controllers\\portfoliocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C76361FB-4E7A-44A1-B0CB-D1D42A375532}|TestApi\\TestApi.csproj|solutionrelative:testapi\\controllers\\portfoliocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,14 +27,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\Burhan\\source\\repos\\TestApi\\TestApi\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "TestApi\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\Burhan\\source\\repos\\TestApi\\TestApi\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "TestApi\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAVAAAA",
+              "Title": "PortfolioController.cs",
+              "DocumentMoniker": "C:\\Users\\Burhan\\source\\repos\\TestApi\\TestApi\\Controllers\\PortfolioController.cs",
+              "RelativeDocumentMoniker": "TestApi\\Controllers\\PortfolioController.cs",
+              "ToolTip": "C:\\Users\\Burhan\\source\\repos\\TestApi\\TestApi\\Controllers\\PortfolioController.cs",
+              "RelativeToolTip": "TestApi\\Controllers\\PortfolioController.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAgwA0AAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T16:12:22.557Z",
+              "WhenOpened": "2024-06-27T11:45:47.641Z",
               "EditorCaption": ""
             }
           ]

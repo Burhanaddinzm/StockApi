@@ -94,9 +94,11 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
     builder.Services.AddScoped<IStockRepository, StockRepository>();
     builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+    builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 
     builder.Services.AddScoped<IStockService, StockManager>();
     builder.Services.AddScoped<ICommentService, CommentManager>();
+    builder.Services.AddScoped<IPortfolioService, PortfolioManager>();
     builder.Services.AddScoped<ITokenService, TokenService>();
 }
 
