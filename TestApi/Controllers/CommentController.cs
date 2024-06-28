@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using TestApi.Dtos.Comment;
+using TestApi.Extensions.Claims;
 using TestApi.Mappers;
 using TestApi.Models;
 using TestApi.Services.Interfaces;
@@ -11,13 +13,16 @@ public class CommentController : ControllerBase
 {
     private readonly ICommentService _commentService;
     private readonly IStockService _stockService;
+    private readonly UserManager<AppUser> _userManager;
 
     public CommentController(
         ICommentService commentService,
-        IStockService stockService)
+        IStockService stockService,
+        UserManager<AppUser> userManager)
     {
         _commentService = commentService;
         _stockService = stockService;
+        _userManager = userManager;
     }
 
     [HttpGet]
@@ -65,7 +70,19 @@ public class CommentController : ControllerBase
             return NotFound("Stock not found!");
         }
 
-        var comment = await _commentService.CreateCommentAsync(stockId.Value, commentDto);
+        var username = User.GetUserName();
+        if (username == null)
+        {
+            return NotFound("Username not found!");
+        }
+
+        var user = await _userManager.FindByNameAsync(username);
+        if (user == null)
+        {
+            return NotFound("User not found!");
+        }
+
+        var comment = await _commentService.CreateCommentAsync(stockId.Value, user.Id, commentDto);
         return CreatedAtAction(nameof(Get), new { id = comment.Id }, comment.ToCommentDto());
     }
 

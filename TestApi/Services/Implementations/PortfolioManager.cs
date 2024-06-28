@@ -29,4 +29,16 @@ public class PortfolioManager : IPortfolioService
 
         return await _portfolioRepository.GetUserStocksAsync(user);
     }
+
+    public async Task<Portfolio> CreatePortfolioAsync(string userId, int stockId)
+    {
+        var portfolio = new Portfolio
+        {
+            StockId = stockId,
+            AppUserId = userId,
+        };
+
+        await _portfolioRepository.CreateAsync(portfolio);
+        return portfolio;
+    }
 }

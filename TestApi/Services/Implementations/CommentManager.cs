@@ -25,9 +25,9 @@ public class CommentManager : ICommentService
         return await _commentRepository.GetByIdAsync(id, "Stock", "AppUser");
     }
 
-    public async Task<Comment> CreateCommentAsync(int stockId, CreateCommentDto commentDto)
+    public async Task<Comment> CreateCommentAsync(int stockId, string userId, CreateCommentDto commentDto)
     {
-        var comment = commentDto.ToCommentFromCreateDto(stockId);
+        var comment = commentDto.ToCommentFromCreateDto(stockId, userId);
         await _commentRepository.CreateAsync(comment);
         return comment;
     }

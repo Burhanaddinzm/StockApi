@@ -22,14 +22,14 @@ public static class CommentMapper
         };
     }
 
-    public static Comment ToCommentFromCreateDto(this CreateCommentDto commentDto, int stockId)
+    public static Comment ToCommentFromCreateDto(this CreateCommentDto commentDto, int stockId, string userId)
     {
         return new Comment
         {
             Title = commentDto.Title,
             Content = commentDto.Content,
             StockId = stockId,
-            AppUserId = commentDto.AppUserId,
+            AppUserId = userId,
         };
     }
 }

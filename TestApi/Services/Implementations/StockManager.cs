@@ -84,6 +84,14 @@ public class StockManager : IStockService
         return await _stockRepository.GetByIdAsync(id, "Comments", "Portfolios");
     }
 
+    public async Task<Stock?> GetStockBySymbolAsync(string symbol)
+    {
+        return await _stockRepository.GetAsync(
+            x => x.Symbol.ToLower().Trim() == symbol.ToLower().Trim(),
+            "Comments",
+            "Portfolios");
+    }
+
     public async Task<Stock> CreateStockAsync(CreateStockDto stockDto)
     {
         var stock = stockDto.ToStockFromCreateDto();

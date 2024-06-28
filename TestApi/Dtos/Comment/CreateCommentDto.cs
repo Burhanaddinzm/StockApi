@@ -12,5 +12,4 @@ public class CreateCommentDto
     [MinLength(5, ErrorMessage = "Content must be at least 5 characters long.")]
     [MaxLength(280, ErrorMessage = "Content can't exceed 280 characters.")]
     public string Content { get; set; } = null!;
-    public string AppUserId { get; set; } = null!;
 }
