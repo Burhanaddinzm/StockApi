@@ -6,17 +6,32 @@ using TestApi.Models;
 using TestApi.Services.Interfaces;
 
 namespace TestApi.Controllers;
+/// <summary>
+/// The StockController class is responsible for handling requests related to Stocks.
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class StockController : ControllerBase
 {
+    /// <summary>
+    /// The stock service.
+    /// </summary>
     private readonly IStockService _stockService;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="StockController"/> class.
+    /// </summary>
+    /// <param name="stockService">The stock service.</param>
     public StockController(IStockService stockService)
     {
         _stockService = stockService;
     }
 
+    /// <summary>
+    /// Gets all stocks.
+    /// </summary>
+    /// <param name="query">The query object.</param>
+    /// <returns>The list of stocks.</returns>
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] QueryObject? query)
     {
@@ -29,6 +44,11 @@ public class StockController : ControllerBase
         return Ok(stocks.Select(x => x.ToStockDto()));
     }
 
+    /// <summary>
+    /// Gets a stock by id.
+    /// </summary>
+    /// <param name="id">The stock id.</param>
+    /// <returns>The stock.</returns>
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get([FromRoute] int? id)
     {
@@ -44,6 +64,11 @@ public class StockController : ControllerBase
         return Ok(stock.ToStockDto());
     }
 
+    /// <summary>
+    /// Creates a new stock.
+    /// </summary>
+    /// <param name="stockDto">The stock DTO.</param>
+    /// <returns>The created stock.</returns>
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateStockDto stockDto)
     {
@@ -56,6 +81,12 @@ public class StockController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = stock.Id }, stock.ToStockDto());
     }
 
+    /// <summary>
+    /// Updates a stock.
+    /// </summary>
+    /// <param name="id">The stock id.</param>
+    /// <param name="stockDto">The stock DTO.</param>
+    /// <returns>The updated stock.</returns>
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update([FromRoute] int? id, [FromBody] UpdateStockDto stockDto)
     {
@@ -78,6 +109,11 @@ public class StockController : ControllerBase
         return Ok(stock.ToStockDto());
     }
 
+    /// <summary>
+    /// Deletes a stock.
+    /// </summary>
+    /// <param name="id">The stock id.</param>
+    /// <returns>No content.</returns>
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete([FromRoute] int? id)
     {

@@ -7,6 +7,9 @@ using TestApi.Models;
 using TestApi.Services.Interfaces;
 
 namespace TestApi.Controllers;
+/// <summary>
+/// The controller for handling comments.
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class CommentController : ControllerBase
@@ -15,6 +18,12 @@ public class CommentController : ControllerBase
     private readonly IStockService _stockService;
     private readonly UserManager<AppUser> _userManager;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CommentController"/> class.
+    /// </summary>
+    /// <param name="commentService">The comment service.</param>
+    /// <param name="stockService">The stock service.</param>
+    /// <param name="userManager">The user manager.</param>
     public CommentController(
         ICommentService commentService,
         IStockService stockService,
@@ -25,6 +34,10 @@ public class CommentController : ControllerBase
         _userManager = userManager;
     }
 
+    /// <summary>
+    /// Gets all comments.
+    /// </summary>
+    /// <returns>The comments.</returns>
     [HttpGet]
     public async Task<IActionResult> Get()
     {
@@ -37,6 +50,11 @@ public class CommentController : ControllerBase
         return Ok(comments.Select(x => x.ToCommentDto()));
     }
 
+    /// <summary>
+    /// Gets a comment by id.
+    /// </summary>
+    /// <param name="id">The comment id.</param>
+    /// <returns>The comment.</returns>
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get([FromRoute] int? id)
     {
@@ -52,6 +70,12 @@ public class CommentController : ControllerBase
         return Ok(comment.ToCommentDto());
     }
 
+    /// <summary>
+    /// Creates a comment for a stock.
+    /// </summary>
+    /// <param name="stockId">The stock id.</param>
+    /// <param name="commentDto">The comment dto.</param>
+    /// <returns>The created comment.</returns>
     [HttpPost("{stockId:int}")]
     public async Task<IActionResult> Create([FromRoute] int? stockId, [FromBody] CreateCommentDto commentDto)
     {
@@ -86,6 +110,12 @@ public class CommentController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = comment.Id }, comment.ToCommentDto());
     }
 
+    /// <summary>
+    /// Updates a comment.
+    /// </summary>
+    /// <param name="id">The comment id.</param>
+    /// <param name="commentDto">The comment dto.</param>
+    /// <returns>The updated comment.</returns>
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update([FromRoute] int? id, [FromBody] UpdateCommentDto commentDto)
     {
@@ -108,6 +138,11 @@ public class CommentController : ControllerBase
         return Ok(comment.ToCommentDto());
     }
 
+    /// <summary>
+    /// Deletes a comment.
+    /// </summary>
+    /// <param name="id">The comment id.</param>
+    /// <returns>No content.</returns>
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete([FromRoute] int? id)
     {

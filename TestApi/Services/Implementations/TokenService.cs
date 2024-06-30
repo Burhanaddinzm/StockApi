@@ -8,17 +8,36 @@ using TestApi.Services.Interfaces;
 
 namespace TestApi.Services.Implementations;
 
+/// <summary>
+/// Class that handles token creation.
+/// </summary>
 public class TokenService : ITokenService
 {
+    /// <summary>
+    /// Configuration settings for JWT.
+    /// </summary>
     private readonly IConfiguration _config;
+
+    /// <summary>
+    /// Symmetric security key used for signing tokens.
+    /// </summary>
     private readonly SymmetricSecurityKey _key;
 
+    /// <summary>
+    /// Constructor that initializes the configuration and key.
+    /// </summary>
+    /// <param name="config">Configuration settings.</param>
     public TokenService(IConfiguration config)
     {
         _config = config;
         _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:SigningKey"]!));
     }
 
+    /// <summary>
+    /// Creates a JWT token for the given user.
+    /// </summary>
+    /// <param name="user">User to create the token for.</param>
+    /// <returns>The created JWT token.</returns>
     public string CreateToken(AppUser user)
     {
         var claims = new List<Claim>

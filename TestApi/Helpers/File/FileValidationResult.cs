@@ -1,13 +1,28 @@
 ﻿namespace TestApi.Helpers.File;
 
-public class FileValidationResult
-{
-    public bool IsValid { get; }
-    public string ErrorMessage { get; }
-
-    public FileValidationResult(bool isValid, string errorMessage = "")
+    /// <summary>
+    /// Represents the result of validating a file.
+    /// </summary>
+    public class FileValidationResult
     {
-        IsValid = isValid;
-        ErrorMessage = errorMessage;
+        /// <summary>
+        /// Gets a value indicating whether the file is valid or not.
+        /// </summary>
+        public bool IsValid { get; }
+        
+        /// <summary>
+        /// Gets the error message if the file is invalid.
+        /// </summary>
+        public string ErrorMessage { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileValidationResult"/> class.
+        /// </summary>
+        /// <param name="isValid">A value indicating whether the file is valid or not.</param>
+        /// <param name="errorMessage">The error message if the file is invalid.</param>
+        public FileValidationResult(bool isValid, string errorMessage = "")
+        {
+            IsValid = isValid;
+            ErrorMessage = errorMessage;
+        }
     }
-}

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "V+C61NWfCyisnCFyM60xgXNe3+0UcBbG9ptPIrdx/os=",
+  "Hash": "gta39d0je1PssEWCKJSQi/zEhuObfqlmlMYp21wAc80=",
   "Source": "TestApi",
   "BasePath": "_content/TestApi",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "TestApi\\wwwroot",
       "Source": "TestApi",
-      "ContentRoot": "C:\\Users\\Burhan\\source\\repos\\TestApi\\TestApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Burhan\\source\\repos\\StockApi\\TestApi\\wwwroot\\",
       "BasePath": "_content/TestApi",
       "Pattern": "**"
     }
