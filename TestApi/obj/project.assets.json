@@ -4668,23 +4668,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Burhan\\.nuget\\packages\\": {},
+    "C:\\Users\\Burhanaddin\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Burhan\\source\\repos\\StockApi\\TestApi\\TestApi.csproj",
+      "projectUniqueName": "C:\\Users\\Burhanaddin\\source\\repos\\StockApi\\TestApi\\TestApi.csproj",
       "projectName": "TestApi",
-      "projectPath": "C:\\Users\\Burhan\\source\\repos\\StockApi\\TestApi\\TestApi.csproj",
-      "packagesPath": "C:\\Users\\Burhan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Burhan\\source\\repos\\StockApi\\TestApi\\obj\\",
+      "projectPath": "C:\\Users\\Burhanaddin\\source\\repos\\StockApi\\TestApi\\TestApi.csproj",
+      "packagesPath": "C:\\Users\\Burhanaddin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Burhanaddin\\source\\repos\\StockApi\\TestApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Burhan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Burhanaddin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4771,7 +4771,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

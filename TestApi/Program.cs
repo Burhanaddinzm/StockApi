@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using TestApi.Data;
+using TestApi.Middleware;
 using TestApi.Models;
 using TestApi.Repositories.Implementations;
 using TestApi.Repositories.Interfaces;
@@ -23,6 +24,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddSwaggerGen(option =>
     {
         option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
+
         option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
             In = ParameterLocation.Header,
@@ -32,6 +34,16 @@ var builder = WebApplication.CreateBuilder(args);
             BearerFormat = "JWT",
             Scheme = "Bearer"
         });
+
+        option.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
+        {
+            In = ParameterLocation.Header,
+            Name = "x-api-key",
+            Type = SecuritySchemeType.ApiKey,
+            Description = "API Key required to access endpoints"
+        });
+
+
         option.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -44,6 +56,17 @@ var builder = WebApplication.CreateBuilder(args);
                 }
             },
             new string[]{}
+        },
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "ApiKey"
+                }
+            },
+            new string[] {}
         }
     });
     });
@@ -91,6 +114,16 @@ var builder = WebApplication.CreateBuilder(args);
         };
     });
 
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(policyBuilder =>
+        {
+            policyBuilder.AllowAnyOrigin()
+                         .AllowAnyHeader()
+                         .AllowAnyMethod();
+        });
+    });
+
     builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
     builder.Services.AddScoped<IStockRepository, StockRepository>();
     builder.Services.AddScoped<ICommentRepository, CommentRepository>();
@@ -112,6 +145,8 @@ var app = builder.Build();
     }
 
     app.UseHttpsRedirection();
+    app.UseCors();
+    app.UseMiddleware<ApiKeyAuthMiddleware>();
     app.UseAuthentication();
     app.UseAuthorization();
     app.MapControllers();
